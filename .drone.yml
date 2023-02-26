@@ -36,9 +36,13 @@ steps:
         pull_request
 
   - name: Build and push
-    image: plugins/docker
+    image: thegeeklab/drone-docker-buildx
+    privileged: true
     settings:
       repo: thatfave/pihole-unbound
+      compress: true
+      use_cache: true
+      cache_from: "thatfave/pihole-unbound:latest"
       username:
         from_secret: docker-username
       password:
