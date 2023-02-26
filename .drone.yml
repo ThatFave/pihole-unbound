@@ -34,18 +34,6 @@ steps:
         tag
         pull_request
 
-  - name: Login to Docker Hub
-    image: plugins/docker
-    settings:
-      username:
-        from_secret: DOCKER_USERNAME
-      password:
-        from_secret: DOCKER_PASSWORD
-    when:
-      event:
-        exclude:
-          pull_request
-
   - name: Build and push
     image: plugins/docker
     settings:
