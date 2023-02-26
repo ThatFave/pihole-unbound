@@ -16,6 +16,8 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    environment:
+      name: secrets
     steps:
       -
         name: Checkout
