@@ -9,7 +9,7 @@ PIDFILE="/run/unbound.pid"
 
 HELPER="/usr/lib/unbound/package-helper"
 
-test -x  || exit 0
+test -x $DAEMON || exit 0
 
 # Override this variable by editing or creating /etc/default/unbound.
 DAEMON_OPTS=""
@@ -18,8 +18,7 @@ if [ -f /etc/default/unbound ]; then
     . /etc/default/unbound
 fi
 
- chroot_setup
- root_trust_anchor_update 2>&1 | logger -p daemon.info -t unbound-anchor
+$HELPER chroot_setup
+$HELPER root_trust_anchor_update 2>&1 | logger -p daemon.info -t unbound-anchor
 
- -d 
-
+$DAEMON -d $DAEMON_OPTS
