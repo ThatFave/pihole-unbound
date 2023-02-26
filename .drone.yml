@@ -5,6 +5,7 @@ name: ci
 trigger:
   branch:
     latest
+    main
   tag:
     v*.*.*
     latest
