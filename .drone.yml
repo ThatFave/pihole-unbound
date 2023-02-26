@@ -11,7 +11,7 @@ trigger:
 
 platform:
   os: linux
-  arch: amd64 arm 386
+  arch: amd64 
 
 workspace:
   base: /var/lib/drone
