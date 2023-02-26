@@ -38,6 +38,7 @@ steps:
   - name: Build and push
     image: plugins/docker
     settings:
+      repo: thatfave/pihole-unbound
       username:
         from_secret: DOCKER_USERNAME
       password:
@@ -45,7 +46,7 @@ steps:
       context: .
       platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
       tags: 
-        - thatfave/pihole-unbound:latest
+        - latest
     when:
       event:
         include:
