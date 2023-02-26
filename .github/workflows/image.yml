@@ -2,7 +2,6 @@ name: Build
 
 # Controls when the workflow will run
 on:
-  workflow_dispatch
   push:
     branches:
       - 'main'
@@ -30,3 +29,11 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm/v7,linux/arm/v6,linux/arm/arm64,linux/836
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.<meta_id>.outputs.tags }}
+          labels: ${{ steps.<meta_id>.outputs.labels }}
