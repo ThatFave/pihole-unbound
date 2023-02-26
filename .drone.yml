@@ -28,14 +28,7 @@ steps:
     settings:
       images: |
         thatfave/pihole-unbound
-      tags: |
-        type=schedule
-        type=ref,event=branch
-        type=ref,event=pull_request
-        type=semver,pattern={{version}}
-        type=semver,pattern={{major}}.{{minor}}
-        type=semver,pattern={{major}}
-        type=sha
+      tags: latest
     when:
       event:
         tag
