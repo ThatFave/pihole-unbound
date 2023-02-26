@@ -9,9 +9,15 @@ on:
     tags:
       - "v*.*.*"
       - "latest"
+    secrets:
+      DOCKERHUB_USERNAME:
+        required: true
+      DOCKERHUB_PASSWORD:
+        required: true
   pull_request:
     branches:
       - "main"
+  
 
 jobs:
   docker:
