@@ -17,12 +17,6 @@ workspace:
   base: /var/lib/drone
   path: ci
 
-environment:
-  DOCKER_USERNAME:
-    from_secret: DOCKER_USERNAME
-  DOCKER_PASSWORD:
-    from_secret: DOCKER_PASSWORD
-
 steps:
   - name: Checkout
     image: plugins/git
