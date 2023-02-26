@@ -1,0 +1,31 @@
+version: '3.0'
+
+services:
+  pihole:
+    container_name: pihole
+    image: thatfave/pihole-unbound:latest
+    hostname: ${HOSTNAME}
+    domainname: ${DOMAIN_NAME}
+    ports:
+#      - 443:443/tcp
+      - 53:53/tcp
+      - 53:53/udp
+      - 8085:80/tcp
+    environment:
+      - FTLCONF_LOCAL_IPV4=${FTLCONF_LOCAL_IPV4}
+      - TZ=${TZ:-UTC}
+      - WEBPASSWORD=${WEBPASSWORD}
+      - WEBTHEME=${WEBTHEME:-default-light}
+      - REV_SERVER=${REV_SERVER:-false}
+      - REV_SERVER_TARGET=${REV_SERVER_TARGET}
+      - REV_SERVER_DOMAIN=${REV_SERVER_DOMAIN}
+      - REV_SERVER_CIDR=${REV_SERVER_CIDR}
+      - PIHOLE_DNS_=127.0.0.1#5335
+      - DNSSEC="true"
+      - DNSMASQ_LISTENING=single
+    volumes:
+      - ./config/pihole:/etc/pihole:rw
+      - ./config/dnsmasq:/etc/dnsmasq.d:rw
+      - ./config/unbound.conf.d:/etc/unbound/unbound.conf.d:rw
+    restart: unless-stopped
+
