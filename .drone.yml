@@ -43,8 +43,7 @@ steps:
         from_secret: DOCKER_PASSWORD
       context: .
       platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
-      tags:
-        - "thatfave/pihole-unbound:latest"
+      tags: latest
       labels:
         - "org.label-schema.build-date=${DRONE_BUILD_CREATED}"
         - "org.label-schema.version=${DRONE_TAG}"
