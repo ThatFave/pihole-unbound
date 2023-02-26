@@ -3,6 +3,11 @@ name: Build
 # Controls when the workflow will run
 on:
   push:
+    secrets:
+      DOCKERHUB_USERNAME:
+        required: true
+      DOCKERHUB_PASSWORD:
+        required: true
     branches:
       - 'main'
 
