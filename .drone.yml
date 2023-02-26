@@ -74,13 +74,13 @@ steps:
       context: .
       platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
       tags:
-        "${DRONE_REPO_NAME}:${DRONE_TAG}"
-        "${DRONE_REPO_NAME}:latest"
+        - "${DRONE_REPO_NAME}:${DRONE_TAG}"
+        - "${DRONE_REPO_NAME}:latest"
       labels:
-        "org.label-schema.build-date=${DRONE_BUILD_CREATED}"
-        "org.label-schema.version=${DRONE_TAG}"
-        "org.label-schema.vcs-ref=${DRONE_COMMIT_SHA}"
-        "org.label-schema.vcs-url=https://${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}"
+        - "org.label-schema.build-date=${DRONE_BUILD_CREATED}"
+        - "org.label-schema.version=${DRONE_TAG}"
+        - "org.label-schema.vcs-ref=${DRONE_COMMIT_SHA}"
+        - "org.label-schema.vcs-url=https://${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}"
     when:
       event:
         include:
