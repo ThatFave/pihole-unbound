@@ -1,0 +1,88 @@
+kind: pipeline
+type: docker
+name: ci
+
+trigger:
+  branch:
+    - latest
+  tag:
+    - v*.*.*
+    - latest
+
+platform:
+  os: linux
+  arch:
+    - 386
+    - amd64
+    - arm/v6
+    - arm/v7
+    - arm64
+
+workspace:
+  base: /var/lib/drone
+  path: ci
+
+environment:
+  DOCKER_USERNAME:
+    from_secret: DOCKER_USERNAME
+  DOCKER_PASSWORD:
+    from_secret: DOCKER_PASSWORD
+
+steps:
+  - name: Checkout
+    image: plugins/git
+    settings:
+      depth: 1
+
+  - name: Docker meta
+    image: docker/metadata:4
+    settings:
+      images: |
+        thatfave/pihole-unbound
+      tags: |
+        type=schedule
+        type=ref,event=branch
+        type=ref,event=pull_request
+        type=semver,pattern={{version}}
+        type=semver,pattern={{major}}.{{minor}}
+        type=semver,pattern={{major}}
+        type=sha
+    when:
+      event:
+        - tag
+        - pull_request
+
+  - name: Login to Docker Hub
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: DOCKER_USERNAME
+      password:
+        from_secret: DOCKER_PASSWORD
+    when:
+      event:
+        exclude:
+          - pull_request
+
+  - name: Build and push
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: DOCKER_USERNAME
+      password:
+        from_secret: DOCKER_PASSWORD
+      context: .
+      platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
+      tags:
+        - "${DRONE_REPO_NAME}:${DRONE_TAG}"
+        - "${DRONE_REPO_NAME}:latest"
+      labels:
+        - "org.label-schema.build-date=${DRONE_BUILD_CREATED}"
+        - "org.label-schema.version=${DRONE_TAG}"
+        - "org.label-schema.vcs-ref=${DRONE_COMMIT_SHA}"
+        - "org.label-schema.vcs-url=https://${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}"
+    when:
+      event:
+        include:
+          - tag
+          - pull_request
