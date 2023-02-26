@@ -17,6 +17,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: secrets
+      url: https://github.com
     steps:
       # Get the repository's code
       - name: Checkout
