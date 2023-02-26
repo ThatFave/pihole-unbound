@@ -35,14 +35,26 @@ steps:
         tag
         pull_request
 
+  - name: Login to Docker Hub
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: docker-username
+      password:
+        from_secret: docker-password
+    when:
+      event:
+        exclude:
+          - pull_request
+
   - name: Build and push
     image: plugins/docker
     settings:
       repo: thatfave/pihole-unbound
       username:
-        from_secret: DOCKER_USERNAME
+        from_secret: docker-username
       password:
-        from_secret: DOCKER_PASSWORD
+        from_secret: docker-password
       context: .
       platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
       tags: 
