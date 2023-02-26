@@ -3,8 +3,7 @@ version: '3.0'
 services:
   pihole:
     container_name: pihole
-      #    image: thatfave/pihole-unbound:latest
-    build: .
+      image: thatfave/pihole-unbound:latest
     hostname: ${HOSTNAME}
     domainname: ${DOMAIN_NAME}
     ports:
