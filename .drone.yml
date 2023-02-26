@@ -12,11 +12,11 @@ trigger:
 platform:
   os: linux
   arch:
-    386
-    amd64
-    arm/v6
-    arm/v7
-    arm64
+    - 386
+    - amd64
+    - arm/v6
+    - arm/v7
+    - arm64
 
 workspace:
   base: /var/lib/drone
