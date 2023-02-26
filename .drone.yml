@@ -28,7 +28,8 @@ steps:
     settings:
       images: |
         thatfave/pihole-unbound
-      tags: latest
+      tags:
+        - latest
     when:
       event:
         tag
@@ -43,12 +44,8 @@ steps:
         from_secret: DOCKER_PASSWORD
       context: .
       platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
-      tags: latest
-      labels:
-        - "org.label-schema.build-date=${DRONE_BUILD_CREATED}"
-        - "org.label-schema.version=${DRONE_TAG}"
-        - "org.label-schema.vcs-ref=${DRONE_COMMIT_SHA}"
-        - "org.label-schema.vcs-url=https://${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}"
+      tags: 
+        - latest
     when:
       event:
         include:
