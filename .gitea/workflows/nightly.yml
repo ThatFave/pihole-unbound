@@ -7,7 +7,7 @@ on:
 
 jobs:
   docker:
-    runs-on: ghcr.io/catthehacker/ubuntu:act-latest
+    runs-on: https://ghcr.io/catthehacker/ubuntu:act-latest
     steps:
       -
         name: Checkout
