@@ -13,14 +13,11 @@ concurrency:
 
 jobs:
   docker:
-    runs-on: ubuntu-latest
+    runs-on: ghcr.io/catthehacker/ubuntu:act-latest
     steps:
       -
         name: Checkout
         uses: actions/checkout@v3
-      - 
-        name: Install docker
-        uses: https://git.fave.lu/fave/install-docker-action@main
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
