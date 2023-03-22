@@ -1,9 +1,11 @@
-# .gitea/workflows/build.yaml
 name: Gitea Actions Demo
 run-name: ${{ github.actor }} is testing out Gitea Actions 🚀
 on:
   schedule:
     - cron: "* * * * *"
+  push:
+    branches:
+      - "main"
   workflow_dispatch: {}
 jobs:
   Explore-Gitea-Actions:
