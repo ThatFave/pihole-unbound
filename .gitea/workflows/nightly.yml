@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v3
       - 
         name: Install docker
-        uses: papodaca/install-docker-action@main
+        uses: https://git.fave.lu/fave/install-docker-action
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
