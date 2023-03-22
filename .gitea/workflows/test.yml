@@ -4,9 +4,6 @@ on:
   schedule:
     - cron: "* * * * *"
   push:
-    branches:
-      - "main"
-  workflow_dispatch: {}
 jobs:
   Explore-Gitea-Actions:
     runs-on: ubuntu-latest
