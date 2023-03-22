@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   docker:
-    runs-on: https://ghcr.io/catthehacker/ubuntu:act-latest
+    runs-on: ubuntu-latest
     steps:
       -
         name: Checkout
