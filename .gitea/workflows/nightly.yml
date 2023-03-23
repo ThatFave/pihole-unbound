@@ -2,7 +2,7 @@ name: Nightly
 
 on:
   schedule:
-    - cron: '0 3 * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch: {}
 
 jobs:
@@ -31,5 +31,5 @@ jobs:
         with:
           context: .
           platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
-          tags:  git.fave.lu/fave/pihole-unbound:latest
-          push: false
+          tags:  git.fave.lu/fave/pihole-unbound:nightly
+          push: true
