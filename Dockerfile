@@ -1,4 +1,4 @@
-FROM pihole/pihole:latest
+FROM ghcr.io/pi-hole/pihole:latest
 RUN apt update && apt install -y unbound
 
 COPY ./src/lighttpd-external.conf /etc/lighttpd/external.conf 
